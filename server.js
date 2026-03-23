@@ -3,14 +3,16 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ MySQL Connection
+// MySQL Connection (LOCAL for now)
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "localhost", // ⚠️ will change later for online
   user: "root",
-  password: "root123", // keep your password same
+  password: "root123",
   database: "portfolio"
 });
 
@@ -22,7 +24,7 @@ db.connect((err) => {
   }
 });
 
-// ✅ API to add message
+// API to add message
 app.post("/add-message", (req, res) => {
   const { name, message } = req.body;
 
@@ -38,7 +40,8 @@ app.post("/add-message", (req, res) => {
   });
 });
 
-// ✅ Start server
-app.listen(5000, () => {
-  console.log("Server running on port 5000 🚀");
+// Start server (IMPORTANT FIX)
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server running 🚀");
 });
+ 
