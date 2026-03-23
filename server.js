@@ -62,4 +62,6 @@ app.post("/add-message", (req, res) => {
 app.listen(process.env.PORT || 5000, () => {
   console.log("Server running 🚀");
 });
- 
+ app.get("/", (req, res) => {
+  res.send("Backend is running ✅");
+});
