@@ -57,14 +57,14 @@ app.post("/add-message", (req, res) => {
     }
   });
 });
-
-// Start server (IMPORTANT FIX)
-app.listen(process.env.PORT || 5000, () => {
-  console.log("Server running 🚀");
-});
  app.get("/", (req, res) => {
   res.send("Backend is running ✅");
 });
+
 app.get("/test", (req, res) => {
-  res.send("Test route working ✅");
+  res.send("Test working ✅");
+});
+// Start server (IMPORTANT FIX)
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server running 🚀");
 });
