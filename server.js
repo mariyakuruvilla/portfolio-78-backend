@@ -10,10 +10,11 @@ app.use(express.json());
 
 // MySQL Connection (LOCAL for now)
 const db = mysql.createConnection({
-  host: "localhost", // ⚠️ will change later for online
+  host: "shortline.proxy.rlwy.net",
   user: "root",
-  password: "root123",
-  database: "portfolio"
+  password: "cXmPgELTN1KAkrfWFXyYFUcAzpeiPsXQ",
+  database: "railway",
+  port: 11276
 });
 
 db.connect((err) => {
@@ -21,6 +22,23 @@ db.connect((err) => {
     console.log("DB Error:", err);
   } else {
     console.log("MySQL Connected ✅");
+
+    // ✅ Create table automatically
+    const createTable = `
+    CREATE TABLE IF NOT EXISTS messages (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(100),
+      message TEXT
+   )
+    `;
+
+    db.query(createTable, (err) => {
+      if (err) {
+        console.log("Table Error:", err);
+      } else {
+        console.log("Table ready ✅");
+      }
+    });
   }
 });
 
